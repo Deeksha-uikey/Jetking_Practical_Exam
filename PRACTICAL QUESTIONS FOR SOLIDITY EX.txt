@@ -1,0 +1,75 @@
+PRACTICAL QUESTIONS FOR SOLIDITY EXAM!!!
+
+
+question - 1. what is EVM?
+
+answer - EVM stands for Ethereum Virtual Machine and it can be also called Ethereum Voting machine.
+EVM is used for making or creating the decentralized applications works in a more easier way.
+It is the second largest Cryptocurrency in the market capitalisation.
+EVMi s used for deploying or excecuting smart contracts -- smart contracts are the self executing contracts which executes acutomatically once the condition is satisfied or met. 
+
+
+question - 2.Write a Smart Contract for understanding value types in Solidity
+Programming Language.
+
+answer - 
+
+//SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.13;
+contract valueTypes
+{
+   int myInteger a = -20;
+   uint unsignedInteger b = 30;
+   address myAddress = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+   string myString = "this is the code for understanding value types";
+   bytes32 myByte = 0x05b3a4526eb0b11348ce75adb4fa5bfa24bdf23d5a0dc78da3aa8a9e63ff390e;
+   bool myBoolean = true;
+}
+
+
+question - 3. Write a Smart Contract for performing various arithmetic
+operations using a user-defined function in Solidity Programming
+Language.
+
+answer -
+
+//SPDX-License-Identifier : MIT
+
+pragma soidity ^0.8.13;
+
+contract arithmeticOperators
+{
+   function sum(uint a, uint b, uint c) external pure returns(uint)
+   {
+       return a + b + c;
+
+   }
+
+   function substract(uint d, uint e) external pure returns(uint)
+    {
+       return e - d;
+     }
+
+    function multiply(uint f, uint g) external pure returns(uint)
+    {
+      return f * g;
+    }
+
+    function divide(uint h, uint i) external pure returns(uint)
+    {
+      return h / i;
+    }
+
+    function modulos(uint j, uint k) external pure returns(uint)
+    {
+      return j % k;
+    }
+
+    function exponential(uint m, uint n) external pure returns(uint)
+    {
+      return m**2;
+      return n** 3;
+     }
+}
+   
