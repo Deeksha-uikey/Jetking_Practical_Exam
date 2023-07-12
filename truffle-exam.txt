@@ -1,0 +1,118 @@
+ question -- Explain briefly the steps involved in initiating a project in Truffle
+and demonstrate the same.
+
+answer -- step 1 we need to create a folder 
+          step 2 then we have to open the folder with gitbash
+     then to check the requirement we need to insert commands 
+
+command 1- npm -v
+command 2- node -v
+command 3- truffle version this will ckeck the current truffle version in your personal computer 
+command 4- to create a bare project insert a command 
+                     truffle init
+ 
+
+when the operation is completed the project structure with contract ,migration, test and truffle-config.js
+to open with visual code editior we have to insert command     code .
+then this command will open visual code with files contract ,migration, test and truffle-config.js
+
+then write a smart contract 
+
+step 3 after writing smart contract save the all changes and go to gitBash again 
+to compile the smart contract with truffle we have to insert the command 
+command- truffle compile 
+ then we will migrate the smart contract using the command truffle migrate.
+
+
+
+
+
+question -2 . How to Write and Compile a Solidity Smart Contract file using
+Truffle?
+
+answer -- firstly we need to create a folder then we will open it with gitBash 
+          then we will check the requirements 
+
+   command 1- npm -v
+   command 2- node -v
+   command 3- truffle version
+   
+then we will create a new directory using command
+command  mkdir identity 
+then for entering in the directory 
+ command cd identity
+
+to check the present working directory 
+command  pwd 
+
+then write a command to open present working directory with code editior use command 
+code .
+this will open visual code studio editior then we need to select the contract files and create a file with .sol extension then write a smart contract 
+for example ----
+
+//SPDX-License-Identifier : MIT
+pragma solidity ^0.8.7;
+
+contract identity {
+     string name;
+constructor () public {
+ name = "DEEKSHA UIKEY";
+}
+
+function getname() view public returns (string memory) {
+   return = name ;
+}
+
+then select the migration folder and create a file in it and name it 
+1_migration_contract.js
+for example ----
+
+const identity = artifacts.require("identity");
+module.export = function (deployer) {
+deployer.deply(identity) }
+
+then save the all chnages and go to gitBash again
+ in  gitBash for compiling the smart contract we will use the command 
+
+command   truffle compile 
+
+now our smart comtract is successfully compiled. 
+
+
+
+ question 3 -  Demonstrate the process of deploying smart contract on
+Ganache using Truffle suite.
+
+
+answer -- firstly we need to check the requirements 
+         command 1- npm -v
+         command 2- node -v
+         command 3- truffle version 
+if you have these requrements in your pc 
+
+now we have to install Ganache in terminal for that use command 
+
+command 1- npm install -g ganache-cli
+then after downloading Ganache in your pc
+
+now run a command ganache-cli 
+then it will show 10 random addressess with their private keys and then we have to select any of one private key to import in metamask using given port number and given network ID.
+
+
+for compiling our smart contact use the command- 
+truffle compile 
+and then migrate the smart contract use the command -
+truffle migrate 
+
+now our smart contact is successfully deployed.
+
+
+
+
+
+
+
+
+
+
+          
