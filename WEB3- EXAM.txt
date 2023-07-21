@@ -1,0 +1,53 @@
+question-- 
+
+1) Demonstrate how we can interact with Ganache using Web3.js.
+
+answer--- 
+create a folder and open it with gitBash in terminal and check for the requirements to insert commands 
+ 
+for checking node package manager version command 
+npm -v
+
+for checking the node version insert command 
+node -v
+
+insert command for installing the requirements 
+npm init -y
+
+to enter into node console insert the command 
+node 
+
+in node console insert command to make a variable 
+
+const Web3 = require('web3');
+
+to check web3 is successfully installed or not insert cammand 
+Web3
+
+make a variable to link Ganache (local ethereum blockchain ) insert command 
+
+const web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
+
+to check Web3 is linked with Ganache or not insert command 
+Web3
+
+to get all accounts of Ganache in terminal insert command 
+
+web3.eth.getAccounts().then(console.log);
+
+to check any account balance in ether firstly assign account address into account variable 
+
+assigning account address insert command 
+
+const account = "0xf3EBC49016168093f7C568042CC6eC0e7b658908";
+
+to view the account balance insert command 
+Web3.eth.getBalance(account,(err,result) => {balance => web3.fromWei(wei,'ether')});
+
+to convert balance into string insert command 
+balance.toString();
+
+now to send ethers from one account to another account.
+In 'from'  we inserted sender's address. In 'to' we inserted receiver's address, then In 'value' we inserted 500000 ether values we want to send for that insert command--- 
+
+web3.eth.sendTransaction({from:"0x027e684c6422Fed407B788B0f18f0973fC096432",to:"0x00A80BB8DE22733813484b1d5FA444CB30E48dB6",value: web3.utils.towei("500000","ether")});
