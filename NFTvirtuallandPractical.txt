@@ -1,0 +1,85 @@
+1) Write a Solidity Smart Contract for a Non-Fungible
+Token (NFT) called Virtual Land NFT which signifies a
+Virtual Land in Metaverse.
+
+
+
+answer --- 
+
+
+For creating a smart contract with OPENZEPPELIN WIZARD for NFT
+https://wizard.openzeppelin.com/#erc721 ---- this is the link for Openzeppelin
+
+give names,symbols and features for your NFT
+now add functions to your smart contract these four functions are
+safeMintLand, setforsale, purchaseVirtualland, GetVirtualLandDetails
+
+here is the contract for virtualland NFT wich signifies a  virtual land in metaverse
+
+
+
+
+        // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts@4.9.3/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts@4.9.3/access/Ownable.sol";
+import "@openzeppelin/contracts@4.9.3/utils/Counters.sol";
+
+contract Gaurikesar is ERC721, Ownable {
+    using Counters for Counters.Counter;
+
+    Counters.Counter private _tokenIdCounter;
+
+    uint MAX_SUPPLY;
+
+    struct virtualLand{
+        string name;
+        string imageURL;
+        uint price;
+        address owner;
+        bool forSale;
+    }
+
+    mapping(uint=> virtualLand)virtualLands;
+
+
+    constructor() ERC721("Gaurikesar", "GKNFT") {
+        MAX_SUPPLY = 100;
+
+    }
+    
+
+    function safeMintLand(string memory _name, uint _price, string memory _imageURL) public  {
+        _tokenIdCounter.increment();
+
+        uint256 tokenId = _tokenIdCounter.current();
+        require(tokenId <= MAX_SUPPLY, "we sold out");
+        virtualLands[tokenId] = virtualLand(_name,_imageURL,_price,msg.sender,false);
+        _safeMint(msg.sender, tokenId);
+    }
+    
+    function setVirtualLandForSale(uint tokenId) external {
+        require(_exists(tokenId),"this NFT does not exist");
+        require(ownerOf (tokenId)== msg.sender,"Only owner can call this function");
+        virtualLands[tokenId].forSale = true;
+    }
+
+    function purchaseVirtualLand(uint tokenId) external payable {
+        virtualLand storage virtualLand = virtualLands[tokenId];
+        require (virtualLand.forSale, "not for sale");
+        require(msg.value >= virtualLand.price, "INSUFFICIENT FUNDS");
+        address previousOwner = virtualLand.owner;
+        virtualLand.owner = msg.sender;
+        virtualLand.forSale = false;
+         payable(previousOwner).transfer(virtualLand.price);
+         _transfer(previousOwner, msg.sender,tokenId);
+
+    }
+
+    function giveVirtualLandDetails(uint tokenId)external view returns(virtualLand memory){
+        return virtualLands[tokenId];
+
+    }
+
+}
