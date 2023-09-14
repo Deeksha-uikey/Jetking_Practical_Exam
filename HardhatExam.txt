@@ -1,0 +1,69 @@
+1) Mention the differences between Hardhat and Truffle.
+
+ answer-- 
+          differences between truffle development environment and hardhat development environment is --
+
+
+* hardhat does the migration fast whereas truffle has poor migration.
+* hardhat charges les gas fees during migration while truffle charges more gas fees during migration.
+* debugging is easy in hardhat whereas truffle is not as good as hardhat.
+
+
+2) Write a Smart Contract and demonstrate the steps
+involved in the process of compilation using Hardhat
+Development Environment.
+
+answer-- 
+      In order to compile contract with hardhat environment you need to create one folder then open it with Git Bash Terminal 
+      and make a directory using command mkdir followed by project name, then for entering into the project run command cd followed by folder name.
+      
+now for installing hardhat enter the command ---
+             npm install --save-dev hardhat
+then go for npx hardhat and create a javascript project, then go for this command ---  
+            npm install --save-dev "hardhat@^2.17.3" "@nomicfoundation/hardhat-toolbox@^3.0.0" it will install demo project locally.
+ then open it with code by entering the command code ..
+       
+
+now in VS Code editor select contracts and make a file nameing token.sol and write the smart contract ---
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+contract HardhatToken{
+    string public name = "HardhatToken";
+    string public symbol = "HDT";
+    uint256 public TotalSupply = 1000;
+    address public owner;
+
+
+event Transfer(address indexed from, address indexed to,uint256 value);
+
+mapping(address=> uint) balance;
+
+constructor(){
+     balance[msg.sender]= TotalSupply;
+    owner = msg.sender;
+}
+
+function transfer(address to,uint256 amount) external {
+    require(balance[msg.sender]>= amount,"Not Enough Tokens");
+
+   balance[msg.sender]-=amount;
+   balance[to]+= amount;
+
+   emit Transfer(msg.sender, to, amount);
+
+}
+
+function balanceOf (address account) external view returns(uint256) {
+    return balance[account];
+
+}
+}
+
+and now save the contract and go back to Git Bash and compile the contract using command ----
+     npx hardhat compile
+
+and this is how we compile the smart contract using hardhat development environment.
+
+
